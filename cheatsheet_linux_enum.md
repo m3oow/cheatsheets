@@ -43,4 +43,4 @@ Command | Result
 `id` | Current user information
 `cat /etc/sudoers` | Who’s allowed to do what as root – Privileged command
 `sudo -l` | Can the current user perform anything as root
-`sudo -l 2>/dev/null | grep -w 'nmap|perl|'awk'|'find'|'bash'|'sh'|'man' |'more'|'less'|'vi'|'vim'|'nc'|'netcat'|'python'|'ruby'|'lua'|'irb' | xargs -r ls -la 2>/dev/null` |	Can the current user run any ‘interesting’ binaries as root and if so also display the binary permissions etc.
+`sudo -l 2>/dev/null | grep -w 'nmap'|'perl'|'awk'|'find'|'bash'|'sh'|'man'|'more'|'less'|'vi'|'vim'|'nc'|'netcat'|'python'|'ruby'|'lua'|'irb' | xargs -r ls -la 2>/dev/null` |	Can the current user run any ‘interesting’ binaries as root and if so also display the binary permissions etc.
