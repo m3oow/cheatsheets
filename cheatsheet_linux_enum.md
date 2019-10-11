@@ -23,9 +23,9 @@ Command | Result
 ------------ | -------------
 `cat /etc/passwd` | List all users on the system
 `cat /etc/group` | List all groups on the system
-`for i in $(cat /etc/passwd 2>/dev/null| cut -d":" -f1 2>/dev/null);do id $i;done 2>/dev/null` | List all uid’s and respective group memberships
+<code>for i in $(cat /etc/passwd 2> /dev/null | cut -d ":" -f1 2> /dev/null); do id $i; done 2> /dev/null</code> | List all uid’s and respective group memberships
 `cat /etc/shadow` | Show user hashes – Privileged command
-`grep -v -E "^#" /etc/passwd | awk -F: '$3 == 0 { print $1}'` | List all super user accounts
+<code>grep -v -E "^#" /etc/passwd | awk -F: '$3 == 0 { print $1}'</code> | List all super user accounts
 `finger` | Users currently logged in
 `pinky` | As above
 `users` | As above
