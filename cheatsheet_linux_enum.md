@@ -23,7 +23,7 @@ Command | Result
 ------------ | -------------
 `cat /etc/passwd` | List all users on the system
 `cat /etc/group` | List all groups on the system
-<code>for i in $(cat /etc/passwd 2> /dev/null | cut -d ":" -f1 2> /dev/null); do id $i; done 2> /dev/null</code> | List all uid’s and respective group memberships
+`for i in $(cat /etc/passwd 2> /dev/null \| cut -d ":" -f1 2> /dev/null); do id $i; done 2> /dev/null` | List all uid’s and respective group memberships
 `cat /etc/shadow` | Show user hashes – Privileged command
 `grep -v -E "^#" /etc/passwd \| awk -F: '$3 == 0 { print $1}'` | List all super user accounts
 `finger` | Users currently logged in
@@ -43,4 +43,4 @@ Command | Result
 `id` | Current user information
 `cat /etc/sudoers` | Who’s allowed to do what as root – Privileged command
 `sudo -l` | Can the current user perform anything as root
-`sudo -l 2>/dev/null | grep -w 'nmap'|'perl'|'awk'|'find'|'bash'|'sh'|'man'|'more'|'less'|'vi'|'vim'|'nc'|'netcat'|'python'|'ruby'|'lua'|'irb' | xargs -r ls -la 2>/dev/null` |	Can the current user run any ‘interesting’ binaries as root and if so also display the binary permissions etc.
+`sudo -l 2> /dev/null \| grep -w 'nmap'\|'perl'\|'awk'\|'find'\|'bash'\|'sh'\|'man'\|'more'\|'less'\|'vi'\|'vim'\|'nc'\|'netcat'\|'python'\|'ruby'\|'lua'\|'irb' \| xargs -r ls -la 2> /dev/null` |	Can the current user run any ‘interesting’ binaries as root and if so also display the binary permissions etc.
