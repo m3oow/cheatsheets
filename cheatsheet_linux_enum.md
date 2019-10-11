@@ -25,7 +25,7 @@ Command | Result
 `cat /etc/group` | List all groups on the system
 <code>for i in $(cat /etc/passwd 2> /dev/null | cut -d ":" -f1 2> /dev/null); do id $i; done 2> /dev/null</code> | List all uid’s and respective group memberships
 `cat /etc/shadow` | Show user hashes – Privileged command
-<code>grep -v -E "^#" /etc/passwd | awk -F: '$3 == 0 { print $1}'</code> | List all super user accounts
+`grep -v -E "^#" /etc/passwd \| awk -F: '$3 == 0 { print $1}'` | List all super user accounts
 `finger` | Users currently logged in
 `pinky` | As above
 `users` | As above
