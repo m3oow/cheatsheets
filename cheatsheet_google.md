@@ -1,5 +1,6 @@
 # Google dorks cheatsheet
 
+```
 inurl:"/vpn/tmindex.html" vpn
 intext:"Powered by GetSimple" -site:get-simple.info
 inurl:"/fuel/login"
@@ -612,3 +613,4 @@ intitle:"Nport web console"
 inurl:"mgl-instagram-gallery/single-gallery.php?media"
 "password" + ext:conf "Modem Type = USB Modem"
 "lv_poweredBy"
+```
